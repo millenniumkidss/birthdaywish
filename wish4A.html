@@ -1,0 +1,1313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Little Surprise for Sir & Ma'am 💖</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Baloo 2", cursive;
+        background: #180e2b;
+        color: white;
+        overflow: hidden;
+      }
+
+      .scene {
+        position: fixed;
+        inset: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        overflow: hidden;
+      }
+      .scene.active {
+        display: flex;
+        animation: sceneIn 0.8s ease;
+      }
+      @keyframes sceneIn {
+        from {
+          opacity: 0;
+          transform: scale(1.03);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .sky {
+        background:
+          radial-gradient(circle at 20% 20%, #49336d, transparent 35%),
+          radial-gradient(circle at 80% 70%, #702e68, transparent 30%),
+          linear-gradient(135deg, #120d2b, #251642, #481f51, #17102e);
+      }
+
+      .star {
+        position: absolute;
+        color: #fff6cc;
+        animation: twinkle 2s infinite alternate;
+        pointer-events: none;
+      }
+      @keyframes twinkle {
+        to {
+          opacity: 1;
+          transform: scale(1.3);
+        }
+      }
+
+      .moon {
+        position: absolute;
+        top: 7%;
+        right: 10%;
+        font-size: 60px;
+        animation: moonFloat 5s infinite ease-in-out;
+      }
+      @keyframes moonFloat {
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        width: min(900px, 100%);
+        margin: auto;
+      }
+      .small-title {
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #f8d7f0;
+      }
+      .heading {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(35px, 7vw, 65px);
+        margin: 18px 0;
+        line-height: 1.2;
+      }
+      .pink {
+        color: #ffb9df;
+        text-shadow: 0 0 20px #f68acb55;
+      }
+      .description {
+        font-size: clamp(16px, 3vw, 22px);
+        color: #f6dff5;
+        line-height: 1.7;
+        margin: 15px auto;
+      }
+
+      .btn {
+        font-family: "Baloo 2", cursive;
+        border: 0;
+        border-radius: 50px;
+        padding: 12px 27px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #67294e;
+        background: linear-gradient(135deg, #ffd5ec, #fff0b9);
+        cursor: pointer;
+        margin-top: 18px;
+        box-shadow: 0 0 25px #ffb9df50;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        transform: translateY(-4px) scale(1.04);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .lovebirds {
+        width: min(550px, 90%);
+        max-height: 300px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 12px auto;
+        animation: coupleFloat 4s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px #ffbedc55);
+      }
+      @keyframes coupleFloat {
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      .couple-caption {
+        font-family: "Dancing Script", cursive;
+        font-size: 27px;
+        color: #ffe2b0;
+        margin: 8px;
+      }
+
+      /* CURTAINS */
+      .curtain-screen {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        overflow: hidden;
+        background: #190d2d;
+      }
+      .curtain {
+        position: absolute;
+        top: 0;
+        width: 51%;
+        height: 100%;
+        z-index: 2;
+        background:
+          repeating-linear-gradient(90deg, #ffffff12 0 18px, #0003 38px),
+          linear-gradient(90deg, #210c39, #59245e, #8a326d, #54204f, #210c39);
+        box-shadow: inset 0 0 45px #0008;
+        transition: transform 2.2s cubic-bezier(0.7, 0, 0.2, 1);
+      }
+      .curtain-left {
+        left: 0;
+        border-right: 4px solid #e6bb73;
+      }
+      .curtain-right {
+        right: 0;
+        border-left: 4px solid #e6bb73;
+      }
+      .curtain-screen::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 13px;
+        z-index: 5;
+        background: linear-gradient(
+          90deg,
+          #a36c32,
+          #ffe6a2,
+          #b77a38,
+          #ffe6a2,
+          #a36c32
+        );
+      }
+      .curtain-center {
+        position: absolute;
+        z-index: 6;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.6s;
+      }
+      .curtain-center h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(38px, 7vw, 65px);
+        color: #ffe5a8;
+      }
+      .curtain-center p {
+        font-size: 20px;
+        color: #ffe0f0;
+        margin: 15px;
+      }
+      .curtain-stars {
+        font-size: 30px;
+        margin-bottom: 15px;
+      }
+      .curtain-btn {
+        border: 2px solid #ffe3a6;
+        border-radius: 50px;
+        padding: 14px 30px;
+        font-family: inherit;
+        font-size: 19px;
+        font-weight: 700;
+        color: #67294e;
+        background: linear-gradient(135deg, #ffe6ad, #ffc6e4);
+        cursor: pointer;
+        animation: buttonPulse 2s infinite;
+      }
+      @keyframes buttonPulse {
+        50% {
+          transform: scale(1.06);
+        }
+      }
+      .curtain-hint {
+        margin-top: 20px;
+        color: #eecde5;
+        letter-spacing: 2px;
+      }
+      .curtain-screen.open .curtain-left {
+        transform: translateX(-105%);
+      }
+      .curtain-screen.open .curtain-right {
+        transform: translateX(105%);
+      }
+      .curtain-screen.open .curtain-center {
+        opacity: 0;
+      }
+      .curtain-screen.closed {
+        display: none;
+      }
+
+      #scene1 .lovebirds {
+        opacity: 0;
+        transform: scale(0.65) translateY(30px);
+        transition: all 1.5s;
+      }
+      #scene1.revealed .lovebirds {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+
+      /* GAMES */
+      .game-panel {
+        display: none;
+        background: #ffffff13;
+        border: 1px solid #ffffff35;
+        border-radius: 22px;
+        padding: 20px;
+        margin: 20px auto;
+        width: min(650px, 100%);
+        box-shadow: 0 10px 35px #0003;
+        animation: gameIn 0.7s ease;
+      }
+      .game-panel.visible {
+        display: block;
+      }
+      @keyframes gameIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .game-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 35px;
+        color: #ffe5a8;
+      }
+      .game-instruction {
+        color: #f8dff0;
+        margin: 8px 0 15px;
+        font-size: 16px;
+      }
+      .game-status {
+        font-size: 18px;
+        color: #ffe4ae;
+        font-weight: 700;
+        margin: 10px;
+      }
+      #heartArena {
+        height: 180px;
+        position: relative;
+        border-radius: 18px;
+        background: #ffffff12;
+        border: 1px dashed #ffc9e7;
+        overflow: hidden;
+      }
+      .catch-heart {
+        position: absolute;
+        border: 0;
+        background: transparent;
+        font-size: 35px;
+        cursor: pointer;
+        animation: heartBeat 0.8s infinite alternate;
+      }
+      @keyframes heartBeat {
+        to {
+          transform: scale(1.25);
+        }
+      }
+      .game-result {
+        font-size: 20px;
+        color: #ffe5a8;
+        margin: 12px;
+      }
+      .match-board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        max-width: 360px;
+        margin: 15px auto;
+      }
+      .match-card {
+        min-height: 75px;
+        border: 1px solid #ffd4ed;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #8b477c, #51265e);
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .match-card.flipped,
+      .match-card.matched {
+        background: linear-gradient(135deg, #ffe0ee, #ffe8b4);
+        color: #74365f;
+      }
+      .match-card.matched {
+        opacity: 0.6;
+        cursor: default;
+      }
+      #loveAnimation {
+        font-family: "Dancing Script", cursive;
+        font-size: 30px;
+        color: #ffe6b5;
+        line-height: 1.6;
+      }
+      .romantic-heart {
+        display: inline-block;
+        font-size: 45px;
+        animation: heartBeat 0.8s infinite alternate;
+      }
+
+      /* GIFT */
+      .gift-scene {
+        background:
+          radial-gradient(circle at center, #673c75, transparent 60%),
+          linear-gradient(135deg, #281439, #421d4d, #1c1234);
+      }
+      .gift {
+        position: relative;
+        width: 170px;
+        height: 155px;
+        margin: 35px auto 10px;
+        cursor: pointer;
+        animation: giftBounce 2s infinite;
+      }
+      @keyframes giftBounce {
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      .gift-box {
+        position: absolute;
+        bottom: 0;
+        width: 170px;
+        height: 115px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #e95691, #b92e73);
+      }
+      .gift-box:before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 100%;
+        background: #ffdc8a;
+        left: 70px;
+      }
+      .gift-lid {
+        position: absolute;
+        width: 190px;
+        height: 40px;
+        background: linear-gradient(135deg, #ff80b8, #e94e94);
+        border-radius: 10px;
+        left: -10px;
+        top: 0;
+        transition: 1s;
+        z-index: 2;
+      }
+      .gift-lid:before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 100%;
+        background: #ffdc8a;
+        left: 80px;
+      }
+      .bow {
+        position: absolute;
+        top: -34px;
+        left: 63px;
+        font-size: 52px;
+        z-index: 3;
+        transition: 1s;
+      }
+      .gift.open .gift-lid {
+        transform: translateY(-100px) rotate(-15deg);
+      }
+      .gift.open .bow {
+        transform: translateY(-120px) rotate(40deg);
+        opacity: 0;
+      }
+      .gift.open {
+        animation: none;
+      }
+      .gift-hint {
+        color: #ffe0f1;
+        margin-top: 20px;
+        animation: hintPulse 1.5s infinite;
+      }
+      @keyframes hintPulse {
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* LETTER */
+      .letter-scene {
+        background:
+          radial-gradient(circle at 30% 30%, #fff4e0, transparent 40%),
+          linear-gradient(135deg, #f5c5d9, #e7a6c7, #d98dbb);
+        color: #663851;
+      }
+      .letter {
+        width: min(700px, 96%);
+        max-height: 75vh;
+        overflow-y: auto;
+        background: #fffaf0;
+        color: #70455f;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 25px 60px #69325555;
+        border: 2px solid #f4d9b0;
+      }
+      .letter-title {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(30px, 5vw, 48px);
+        color: #bd5485;
+        margin-bottom: 15px;
+      }
+      .letter-text {
+        font-size: 17px;
+        line-height: 1.9;
+      }
+      .letter-text strong {
+        color: #ba5080;
+      }
+      .signature {
+        font-family: "Dancing Script", cursive;
+        font-size: 27px;
+        color: #b74c7f;
+        margin-top: 20px;
+      }
+
+      /* CELEBRATION */
+      .celebration {
+        background:
+          radial-gradient(circle at center, #773a70 0%, transparent 55%),
+          linear-gradient(135deg, #160c2b, #34164c, #591f58);
+      }
+      .final-title {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(40px, 8vw, 78px);
+        color: #ffe1a6;
+        text-shadow: 0 0 25px #ffb8e3;
+        animation: titleGlow 2s infinite alternate;
+      }
+      @keyframes titleGlow {
+        to {
+          text-shadow:
+            0 0 35px #ffb8e3,
+            0 0 60px #ffd98c;
+        }
+      }
+      .deer-pair {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        width: 100%;
+        max-width: 720px;
+        margin: 15px auto;
+      }
+      .deer-pair img {
+        width: 100%;
+        height: 260px;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 12px;
+        box-shadow: 0 8px 22px #0003;
+        background: transparent;
+      }
+      .cake {
+        font-size: 65px;
+        margin: 5px;
+        animation: cakeDance 1.5s infinite;
+      }
+      @keyframes cakeDance {
+        50% {
+          transform: rotate(5deg) scale(1.08);
+        }
+      }
+      .final-text {
+        font-size: clamp(16px, 3vw, 23px);
+        color: #ffe7ef;
+        line-height: 1.7;
+        margin: 8px auto;
+      }
+      .day-wish {
+        display: none;
+        margin: 20px auto 30px;
+        padding: 15px;
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(28px, 5vw, 42px);
+        color: #ffe6b5;
+        text-shadow: 0 0 15px #ffb8df;
+      }
+      .day-wish.show {
+        display: block;
+        animation: wishAppear 1.5s ease;
+      }
+      .day-wish span {
+        display: block;
+        font-family: "Baloo 2", cursive;
+        font-size: 17px;
+        color: #ffe7ef;
+        margin-top: 10px;
+      }
+      @keyframes wishAppear {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* EFFECTS */
+      .float {
+        position: fixed;
+        bottom: -40px;
+        pointer-events: none;
+        z-index: 5;
+        animation: floatUp linear forwards;
+      }
+      @keyframes floatUp {
+        10% {
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      .confetti {
+        position: fixed;
+        top: -20px;
+        z-index: 100;
+        pointer-events: none;
+        animation: confettiFall linear forwards;
+      }
+      @keyframes confettiFall {
+        to {
+          transform: translateY(110vh) rotate(800deg);
+          opacity: 0;
+        }
+      }
+      .firework {
+        position: fixed;
+        z-index: 50;
+        pointer-events: none;
+        font-size: 30px;
+        animation: boom 1.5s forwards;
+      }
+      @keyframes boom {
+        0% {
+          transform: scale(0.1);
+          opacity: 0;
+        }
+        30% {
+          transform: scale(1.5);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(2.5) translateY(-60px);
+          opacity: 0;
+        }
+      }
+
+      /* SCROLLING */
+      #scene1,
+      #scene4 {
+        overflow-y: auto;
+        overflow-x: hidden;
+        align-items: flex-start;
+        -webkit-overflow-scrolling: touch;
+      }
+      #scene1 .content,
+      #scene4 .content {
+        margin: auto;
+        padding: 15px 0 35px;
+      }
+      #scene1 .content {
+        max-width: 850px;
+      }
+      #scene4 .content {
+        max-width: 950px;
+      }
+      #scene1 .begin-button {
+        display: none;
+      }
+      #scene1 .begin-button.visible {
+        display: inline-block;
+      }
+
+      @media (max-width: 600px) {
+        .scene {
+          padding: 12px;
+        }
+        .moon {
+          font-size: 42px;
+        }
+        .heading {
+          font-size: 36px;
+          margin: 12px 0;
+        }
+        .description {
+          font-size: 16px;
+          line-height: 1.6;
+          margin: 10px auto;
+        }
+        .lovebirds {
+          width: 95%;
+          max-height: 230px;
+        }
+        .couple-caption {
+          font-size: 23px;
+        }
+        .btn {
+          font-size: 16px;
+          padding: 10px 20px;
+        }
+        .game-panel {
+          padding: 14px;
+          margin: 15px auto;
+        }
+        .game-title {
+          font-size: 29px;
+        }
+        #heartArena {
+          height: 150px;
+        }
+        .match-board {
+          max-width: 290px;
+          gap: 7px;
+        }
+        .match-card {
+          min-height: 65px;
+          font-size: 26px;
+        }
+        .letter {
+          padding: 22px 17px;
+          max-height: 72vh;
+        }
+        .letter-text {
+          font-size: 15px;
+        }
+        .signature {
+          font-size: 23px;
+        }
+        #scene4 {
+          padding: 10px;
+        }
+        #scene4 .final-title {
+          font-size: 42px;
+        }
+        #scene4 .heading {
+          font-size: 32px;
+        }
+        #scene4 .deer-pair {
+          gap: 5px;
+        }
+        #scene4 .deer-pair img {
+          height: 180px;
+          object-fit: contain;
+          object-position: center;
+          border-radius: 8px;
+        }
+        #scene4 .cake {
+          font-size: 50px;
+        }
+        #scene4 .final-text {
+          font-size: 16px;
+        }
+        .day-wish {
+          font-size: 30px;
+        }
+        .day-wish span {
+          font-size: 15px;
+        }
+        .curtain-center h1 {
+          font-size: 40px;
+        }
+        .curtain-center p {
+          font-size: 16px;
+        }
+        .curtain-btn {
+          font-size: 16px;
+          padding: 12px 23px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- SCENE 1: CURTAINS + GAMES -->
+    <section class="scene sky active" id="scene1">
+      <div class="curtain-screen" id="curtainScreen">
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+        <div class="curtain-center">
+          <div class="curtain-stars">✨ 💖 ✨</div>
+          <h1>A Special Surprise</h1>
+          <p>Made with love for Sir & Ma'am</p>
+          <button class="curtain-btn" onclick="revealSurprise(event)">
+            Open Your Surprise 💝
+          </button>
+          <div class="curtain-hint">Click to reveal the magic ✨</div>
+        </div>
+      </div>
+
+      <div class="moon">🌙</div>
+
+      <div class="content">
+        <div class="small-title">A little magical surprise</div>
+        <h1 class="heading">
+          Some stories are<br /><span class="pink"
+            >written in the stars...</span
+          >
+        </h1>
+        <p class="description">
+          And some beautiful stories begin<br />when two hearts find each other.
+          💫
+        </p>
+
+        <img src="lovebirds.png" class="lovebirds" alt="MK Love Birds" />
+        <div class="couple-caption">Two souls · One beautiful journey</div>
+        <p class="description">
+          Today, we celebrate one such beautiful story... ❤️
+        </p>
+
+        <!-- GAME 1 -->
+        <div class="game-panel" id="heartGame">
+          <div class="game-title">Catch the Love! 💖</div>
+          <p class="game-instruction">
+            Tap 5 floating hearts before the timer ends!
+          </p>
+          <div class="game-status">
+            Hearts: <span id="heartScore">0</span>/5 &nbsp; | &nbsp; Time:
+            <span id="heartTime">15</span>s
+          </div>
+          <div id="heartArena">
+            <button
+              class="catch-heart"
+              style="left: 12%; top: 25%"
+              onclick="catchLove(this)"
+            >
+              💗
+            </button>
+            <button
+              class="catch-heart"
+              style="left: 43%; top: 55%"
+              onclick="catchLove(this)"
+            >
+              💖
+            </button>
+            <button
+              class="catch-heart"
+              style="left: 75%; top: 20%"
+              onclick="catchLove(this)"
+            >
+              💕
+            </button>
+          </div>
+          <div class="game-result" id="heartResult">Ready, set, catch! 💘</div>
+          <button class="btn" id="heartStartBtn" onclick="startHeartGame()">
+            Start Game ❤️
+          </button>
+          <button
+            class="btn"
+            id="heartRetryBtn"
+            onclick="startHeartGame()"
+            style="display: none"
+          >
+            Try Again 🔄
+          </button>
+        </div>
+
+        <!-- ROMANTIC ANIMATION -->
+        <div class="game-panel" id="loveAnimation">
+          <div class="romantic-heart">💗</div>
+          <div>Some bonds are not just made in heaven...</div>
+          <div>They make every moment feel magical. ✨</div>
+          <div style="font-size: 20px; margin-top: 12px">
+            Two hearts. One beautiful forever. 💕
+          </div>
+        </div>
+
+        <!-- GAME 2 -->
+        <div class="game-panel" id="matchGame">
+          <div class="game-title">A Little Memory Game 🥰</div>
+          <p class="game-instruction">
+            Find all 3 matching pairs to unlock your next surprise!
+          </p>
+          <div class="game-status">
+            Pairs found: <span id="pairScore">0</span>/3
+          </div>
+          <div class="match-board" id="matchBoard"></div>
+          <div class="game-result" id="matchResult">
+            Let's see how good your memory is! 💕
+          </div>
+        </div>
+
+        <div class="game-panel" id="gameComplete">
+          <div class="game-title">You Did It! 🎉</div>
+          <p class="game-instruction">
+            Your love and teamwork unlocked the next surprise!
+          </p>
+          <div style="font-size: 45px; margin: 12px">🦌 💖 🦌</div>
+          <button class="btn" onclick="goToScene(2)">
+            Unlock Your Next Surprise 🎁
+          </button>
+        </div>
+
+        <button
+          class="btn begin-button"
+          id="beginButton"
+          onclick="goToScene(2)"
+        >
+          Begin the Surprise ✨
+        </button>
+      </div>
+    </section>
+
+    <!-- SCENE 2: GIFT -->
+    <section class="scene gift-scene" id="scene2">
+      <div class="content">
+        <div class="small-title">Made with lots of love</div>
+        <h1 class="heading pink">
+          A little gift<br />for two special people...
+        </h1>
+        <p class="description">
+          We have something special for you.<br />Tap the gift to open it! 🎁
+        </p>
+        <div class="gift" id="gift" onclick="openGift()">
+          <div class="gift-lid"></div>
+          <div class="bow">🎀</div>
+          <div class="gift-box"></div>
+        </div>
+        <div class="gift-hint" id="giftHint">✨ Click the gift ✨</div>
+      </div>
+    </section>
+
+    <!-- SCENE 3: LETTER -->
+    <section class="scene letter-scene" id="scene3">
+      <div class="content">
+        <div class="letter">
+          <h2 class="letter-title">Dear Sir & Ma'am ❤️</h2>
+          <div class="letter-text">
+            Today is not just about celebrating another year together...
+            <br /><br />
+            It is about celebrating a beautiful partnership — one built on
+            <strong
+              >love, trust, understanding, dreams and togetherness.</strong
+            >
+            <br /><br />
+            The beautiful world of Millennium Kidss, the little smiles, the
+            happy children, and the dreams that continue to grow...
+            <br /><br />
+            All carry a little piece of the love, dedication and vision that
+            both of you have put into it.
+            <br /><br />
+            You are a reminder that when two people walk together with love and
+            belief, they can turn dreams into something truly beautiful.
+            <br /><br />
+            May you always find happiness in each other's smiles, strength in
+            each other's presence, peace in each other's hearts, and countless
+            reasons to celebrate life together.
+            <br /><br />
+            May the next chapter of your story be even more beautiful than all
+            the chapters before it.
+            <br /><br />
+            <strong>
+              Keep choosing each other.<br />
+              Keep dreaming together.<br />
+              Keep making beautiful memories. ❤️
+            </strong>
+          </div>
+          <div class="signature">
+            With love, your Millennium Kidss family 🦌
+          </div>
+        </div>
+        <button class="btn" onclick="goToScene(4)">
+          And now... let's celebrate! 🎉
+        </button>
+      </div>
+    </section>
+
+    <!-- SCENE 4: FINAL CELEBRATION -->
+    <section class="scene celebration" id="scene4">
+      <div class="content">
+        <div class="small-title">A forever kind of love</div>
+        <h1 class="final-title">Happy Anniversary!</h1>
+        <h2 class="heading pink">Sir & Ma'am 💕</h2>
+
+        <div class="deer-pair">
+          <img
+            src="p1.png"
+            alt="Sir and Ma'am"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="p2.png"
+            alt="Sir and Ma'am"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="p3.jpg"
+            alt="Sir and Ma'am"
+            onerror="this.style.display = 'none'"
+          />
+        </div>
+
+        <div class="cake">🎂</div>
+        <p class="final-text">
+          Two hearts ❤️<br />
+          One beautiful journey ✨<br />
+          Countless wonderful memories 💫<br />
+          And a lifetime of love still waiting to unfold!
+        </p>
+
+        <button class="btn" onclick="party()">🎊 Make Some Magic!</button>
+        <p class="description" style="margin-top: 15px">
+          Made with love by your MK family 💗
+        </p>
+
+        <div class="day-wish" id="dayWish">
+          🌷 Enjoy Your Special Day! 🌷
+          <span
+            >Keep smiling, keep loving, and keep making beautiful memories
+            together. ❤️</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <script>
+      /* STARS */
+      for (let i = 0; i < 80; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.innerHTML = Math.random() > 0.5 ? "✦" : "·";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.fontSize = 8 + Math.random() * 16 + "px";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        document.getElementById("scene1").appendChild(star);
+      }
+
+      /* SCENE SWITCH + FINAL WISH TIMER */
+      let dayWishTimer = null;
+
+      function goToScene(number) {
+        document
+          .querySelectorAll(".scene")
+          .forEach((scene) => scene.classList.remove("active"));
+
+        const nextScene = document.getElementById("scene" + number);
+        nextScene.classList.add("active");
+
+        if (number === 4) {
+          const wish = document.getElementById("dayWish");
+          clearTimeout(dayWishTimer);
+          wish.classList.remove("show");
+          nextScene.scrollTop = 0;
+
+          party();
+
+          dayWishTimer = setTimeout(() => {
+            wish.classList.add("show");
+            setTimeout(() => {
+              wish.scrollIntoView({ behavior: "smooth", block: "center" });
+            }, 300);
+          }, 10000);
+        }
+      }
+
+      /* CURTAINS */
+      let curtainOpened = false;
+
+      function revealSurprise(event) {
+        if (event) event.stopPropagation();
+        if (curtainOpened) return;
+        curtainOpened = true;
+
+        const curtain = document.getElementById("curtainScreen");
+        const scene = document.getElementById("scene1");
+
+        curtain.classList.add("open");
+
+        setTimeout(() => {
+          scene.classList.add("revealed");
+        }, 900);
+
+        setTimeout(() => {
+          curtain.classList.add("closed");
+          document.getElementById("heartGame").classList.add("visible");
+          document
+            .getElementById("heartGame")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 2400);
+      }
+
+      /* GAME 1: CATCH HEARTS */
+      let caughtHearts = 0;
+      let heartCountdown = null;
+      let heartGameRunning = false;
+      let heartSeconds = 15;
+
+      function startHeartGame() {
+        clearInterval(heartCountdown);
+        caughtHearts = 0;
+        heartSeconds = 15;
+        heartGameRunning = true;
+
+        document.getElementById("heartScore").textContent = "0";
+        document.getElementById("heartTime").textContent = "15";
+        document.getElementById("heartResult").textContent =
+          "Catch those hearts! 💘";
+        document.getElementById("heartStartBtn").style.display = "none";
+        document.getElementById("heartRetryBtn").style.display = "none";
+
+        document.querySelectorAll(".catch-heart").forEach((btn) => {
+          btn.disabled = false;
+          btn.style.display = "block";
+        });
+
+        heartCountdown = setInterval(() => {
+          heartSeconds--;
+          document.getElementById("heartTime").textContent = heartSeconds;
+
+          if (heartSeconds <= 0) {
+            clearInterval(heartCountdown);
+            heartGameRunning = false;
+            if (caughtHearts < 5) {
+              document.getElementById("heartResult").textContent =
+                "Time's up! Try once more 💗";
+              document.getElementById("heartRetryBtn").style.display =
+                "inline-block";
+            }
+          }
+        }, 1000);
+      }
+
+      function catchLove(button) {
+        if (!heartGameRunning) return;
+
+        caughtHearts++;
+        document.getElementById("heartScore").textContent = caughtHearts;
+
+        button.style.left = Math.random() * 75 + "%";
+        button.style.top = Math.random() * 65 + "%";
+
+        if (caughtHearts >= 5) {
+          heartGameRunning = false;
+          clearInterval(heartCountdown);
+          document.getElementById("heartResult").textContent =
+            "Amazing! You caught all the love! 💖";
+          document
+            .querySelectorAll(".catch-heart")
+            .forEach((btn) => (btn.style.display = "none"));
+
+          setTimeout(showLoveAnimation, 1200);
+        }
+      }
+
+      /* ROMANTIC ANIMATION */
+      function showLoveAnimation() {
+        const animation = document.getElementById("loveAnimation");
+        animation.classList.add("visible");
+        animation.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        burstHearts();
+
+        setTimeout(() => {
+          document.getElementById("matchGame").classList.add("visible");
+          startMatchGame();
+          document
+            .getElementById("matchGame")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 3500);
+      }
+
+      /* GAME 2: MEMORY MATCH */
+      const memoryEmojis = ["💖", "🌸", "🦌", "💖", "🌸", "🦌"];
+      let firstCard = null;
+      let secondCard = null;
+      let lockBoard = false;
+      let matchedPairs = 0;
+
+      function startMatchGame() {
+        const board = document.getElementById("matchBoard");
+        board.innerHTML = "";
+        firstCard = null;
+        secondCard = null;
+        lockBoard = false;
+        matchedPairs = 0;
+
+        document.getElementById("pairScore").textContent = "0";
+        document.getElementById("matchResult").textContent =
+          "Find the matching pairs! 💕";
+
+        const shuffled = [...memoryEmojis].sort(() => Math.random() - 0.5);
+
+        shuffled.forEach((emoji, index) => {
+          const card = document.createElement("button");
+          card.className = "match-card";
+          card.textContent = "❔";
+          card.dataset.emoji = emoji;
+          card.dataset.index = index;
+          card.onclick = () => flipMatchCard(card);
+          board.appendChild(card);
+        });
+      }
+
+      function flipMatchCard(card) {
+        if (
+          lockBoard ||
+          card.classList.contains("flipped") ||
+          card.classList.contains("matched")
+        )
+          return;
+
+        card.classList.add("flipped");
+        card.textContent = card.dataset.emoji;
+
+        if (!firstCard) {
+          firstCard = card;
+          return;
+        }
+
+        secondCard = card;
+        lockBoard = true;
+
+        if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+          firstCard.classList.add("matched");
+          secondCard.classList.add("matched");
+          matchedPairs++;
+          document.getElementById("pairScore").textContent = matchedPairs;
+
+          firstCard = null;
+          secondCard = null;
+          lockBoard = false;
+
+          if (matchedPairs === 3) {
+            document.getElementById("matchResult").textContent =
+              "Perfect match! You unlocked the surprise! 🎉";
+            setTimeout(() => {
+              document.getElementById("gameComplete").classList.add("visible");
+              document
+                .getElementById("gameComplete")
+                .scrollIntoView({ behavior: "smooth", block: "center" });
+              burstHearts();
+            }, 800);
+          }
+        } else {
+          setTimeout(() => {
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+            firstCard.textContent = "❔";
+            secondCard.textContent = "❔";
+            firstCard = null;
+            secondCard = null;
+            lockBoard = false;
+          }, 850);
+        }
+      }
+
+      /* GIFT */
+      let giftOpened = false;
+
+      function openGift() {
+        if (giftOpened) return;
+        giftOpened = true;
+
+        document.getElementById("gift").classList.add("open");
+        document.getElementById("giftHint").innerHTML =
+          "💖 A little love is on its way...";
+        burstHearts();
+
+        setTimeout(() => goToScene(3), 1600);
+      }
+
+      /* FLOATING HEARTS */
+      const heartItems = ["❤️", "💕", "💖", "💗", "💘", "✨", "🌸", "💐"];
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "float";
+        heart.innerText =
+          heartItems[Math.floor(Math.random() * heartItems.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = 18 + Math.random() * 25 + "px";
+        heart.style.animationDuration = 4 + Math.random() * 5 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 9000);
+      }
+      setInterval(createHeart, 650);
+
+      function burstHearts() {
+        for (let i = 0; i < 30; i++) {
+          setTimeout(() => {
+            const heart = document.createElement("div");
+            heart.className = "float";
+            heart.innerText = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = 20 + Math.random() * 30 + "px";
+            heart.style.animationDuration = "4s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+          }, i * 60);
+        }
+      }
+
+      /* PARTY */
+      function party() {
+        const items = ["🎉", "✨", "💖", "🌸", "🎊", "💕", "🌟", "💐"];
+
+        for (let i = 0; i < 120; i++) {
+          setTimeout(() => {
+            const c = document.createElement("div");
+            c.className = "confetti";
+            c.innerText = items[Math.floor(Math.random() * items.length)];
+            c.style.left = Math.random() * 100 + "vw";
+            c.style.fontSize = 15 + Math.random() * 28 + "px";
+            c.style.animationDuration = 2 + Math.random() * 4 + "s";
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 6000);
+          }, i * 12);
+        }
+        fireworks();
+      }
+
+      /* FIREWORKS */
+      function fireworks() {
+        const items = ["✨", "💥", "🌟", "🎆", "🎇"];
+
+        for (let i = 0; i < 25; i++) {
+          setTimeout(() => {
+            const f = document.createElement("div");
+            f.className = "firework";
+            f.innerText = items[Math.floor(Math.random() * items.length)];
+            f.style.left = Math.random() * 90 + "vw";
+            f.style.top = Math.random() * 80 + "vh";
+            document.body.appendChild(f);
+            setTimeout(() => f.remove(), 1600);
+          }, i * 100);
+        }
+      }
+    </script>
+  </body>
+</html>
